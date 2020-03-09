@@ -27,7 +27,7 @@ h1,h2,h3,h4,h5,h6{
 }
 
 .insidePage{
-  height: 90%;
+  height: auto;
   width: 100%;
 }
 
@@ -40,6 +40,35 @@ h1,h2,h3,h4,h5,h6{
   height: 100%;
   width: 100%;
   background-color: rgba(35, 36, 35, 0.7);
+}
+
+.sideBar .MuiDrawer-paper{
+  background-color: rgba(35, 36, 35, 0.7);
+
+}
+
+.sideList *{
+  color: white !important;
+ 
+  animation: glow 1s ease-in-out infinite alternate !important;
+}
+
+@-webkit-keyframes glow {
+  from {
+    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #e60073, 0 0 40px #e60073, 0 0 50px #e60073, 0 0 60px #e60073, 0 0 70px #e60073;
+  }
+  to {
+    text-shadow: 0 0 20px #fff, 0 0 30px #ff4da6, 0 0 40px #ff4da6, 0 0 50px #ff4da6, 0 0 60px #ff4da6, 0 0 70px #ff4da6, 0 0 80px #ff4da6;
+  }
+}
+.logo{
+  font-size: 30px !important;
+  text-align: center;
+  margin: auto;
+  color: aliceblue;
+  padding: 10px;
+  font-family: 'Caveat', cursive !important;
+
 }
 
 .FrontMain{

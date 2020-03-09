@@ -7,6 +7,8 @@ import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import { Link } from 'react-router-dom';
+import {connect} from 'react-redux'
+import {OpenDrawer} from '../actions'
 
 
 const useStyles = makeStyles(theme => ({
@@ -25,14 +27,15 @@ const useStyles = makeStyles(theme => ({
       height: '100%'
   }
 }));
-export default function Navbar() {
+function Navbar(props) {
     const classes = useStyles();
+   
 
   return (
     <div className={classes.root}>
       <AppBar className={classes.bar} position="static"  >
         <Toolbar>
-          <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
+          <IconButton onClick={props.OpenDrawer} edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" className={`${classes.title} homeName`}>
@@ -46,3 +49,16 @@ export default function Navbar() {
     </div>
   );
 }
+
+
+
+
+const mapStateToProps = (state) => ({
+  state
+})
+
+const mapDispatchToProps ={
+  OpenDrawer
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Navbar)

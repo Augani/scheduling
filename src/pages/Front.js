@@ -13,11 +13,15 @@ import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
 import { makeStyles } from '@material-ui/core/styles';
+import { connect } from 'react-redux'
+import {OpenDrawer, CloseDrawer} from '../actions';
+import { SocialIcon } from 'react-social-icons';
 
 
 const useStyles = makeStyles({
     list: {
       width: 250,
+      background: 'transparent'
     },
     fullList: {
       width: 'auto',
@@ -33,80 +37,55 @@ const useStyles = makeStyles({
         marginBottom: '20px'
       },
   });
-export default function Front() {
+function Front(props) {
+   console.log(props)
     const classes = useStyles();
     const [state, setState] = React.useState({
-      top: false,
       left: false,
-      bottom: false,
-      right: false,
     });
+
+   
+   
     const toggleDrawer = (side, open) => event => {
         if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
           return;
         }
-    
+        props.CloseDrawer();
         setState({ ...state, [side]: open });
       };
 
       const sideList = side => (
         <div
-          className={classes.list}
+          className={`${classes.list} `}
           role="presentation"
-          onClick={toggleDrawer(side, false)}
-          onKeyDown={toggleDrawer(side, false)}
+          onClick={()=>toggleDrawer(side, false)}
+          onKeyDown={()=>toggleDrawer(side, false)}
         >
+        <Typography variant="h4" className={`logo`}>
+            Classic braids
+          </Typography>
           <List>
-            {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-              <ListItem button key={text}>
+            {['Booking', 'Price List', 'Contact'].map((text, index) => (
+              <ListItem className="sideList" button key={text}>
                 <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
                 <ListItemText primary={text} />
               </ListItem>
             ))}
           </List>
           <Divider />
-          <List>
-            {['All mail', 'Trash', 'Spam'].map((text, index) => (
-              <ListItem button key={text}>
-                <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-                <ListItemText primary={text} />
-              </ListItem>
-            ))}
-          </List>
+          
         </div>
       );
     
-      const fullList = side => (
-        <div
-          className={classes.fullList}
-          role="presentation"
-          onClick={toggleDrawer(side, false)}
-          onKeyDown={toggleDrawer(side, false)}
-        >
-          <List>
-            {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-              <ListItem button key={text}>
-                <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-                <ListItemText primary={text} />
-              </ListItem>
-            ))}
-          </List>
-          <Divider />
-          <List>
-            {['All mail', 'Trash', 'Spam'].map((text, index) => (
-              <ListItem button key={text}>
-                <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-                <ListItemText primary={text} />
-              </ListItem>
-            ))}
-          </List>
-        </div>
-      );
+    
     
     return (
         
         <div className="FrontMain">
-        <Button onClick={toggleDrawer('left', true)}>Open Left</Button>
+        <Drawer className="sideBar" open={props.state.drawer} onClose={toggleDrawer('left', false)}>
+        {sideList('left')}
+      </Drawer>
+       
            <div className="myVideo">
            <ReactPlayer className="videoProp" loop={true} volume={0} muted url={Back} playing />
            <ReactPlayer className="videoProp" loop={true} volume={0} muted url={Back} playing />
@@ -127,3 +106,18 @@ export default function Front() {
         </div>
     )
 }
+
+
+
+
+
+const mapStateToProps = (state) => ({
+    state
+})
+
+const mapDispatchToProps = {
+    OpenDrawer,
+    CloseDrawer
+}
+export default connect(mapStateToProps, mapDispatchToProps)(Front)
+
