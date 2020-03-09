@@ -111,7 +111,7 @@ function Front(props) {
            <div className="FrontCover">
            <Container maxWidth="sm" className="HeroHolder">
              <Typography variant="h2" className="hero">
-            Welcome to Classic braids
+            Welcome to Beauty Hairven
             
              </Typography>
              <Button className={classes.root}>Book Us Now</Button>
