@@ -39,7 +39,7 @@ function Navbar(props) {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" className={`${classes.title} homeName`}>
-           <Link to="/"> Classic braids</Link>
+           <Link to="/"> Beauty Hairven</Link>
           </Typography>
           <Button className="BookingMenu" color="inherit">
           <Link to="/check">Check Booking</Link>

@@ -78,7 +78,7 @@ function Front(props) {
           onKeyDown={()=>toggleDrawer(side, false)}
         >
         <Typography variant="h4" className={`logo`}>
-            Classic braids
+        Beauty Hairven
           </Typography>
           <List>
             {['Book An Appointment', 'Pricing', 'Contact Us'].map((text, index) => (
