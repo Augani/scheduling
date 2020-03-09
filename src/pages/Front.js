@@ -16,6 +16,9 @@ import { makeStyles } from '@material-ui/core/styles';
 import { connect } from 'react-redux'
 import {OpenDrawer, CloseDrawer} from '../actions';
 import { SocialIcon } from 'react-social-icons';
+import ContactPhoneIcon from '@material-ui/icons/ContactPhone';
+import AttachMoneyIcon from '@material-ui/icons/AttachMoney';
+import EventAvailableIcon from '@material-ui/icons/EventAvailable';
 
 
 const useStyles = makeStyles({
@@ -54,6 +57,19 @@ function Front(props) {
         setState({ ...state, [side]: open });
       };
 
+      const renderIcon = (index)=>{
+          switch(index){
+              case 0:
+                  return <EventAvailableIcon/>;
+              case 1:
+                  return <AttachMoneyIcon/>;
+              case 2:
+                  return <ContactPhoneIcon/>;
+              default:
+                  return <EventAvailableIcon/>            
+          }
+      }
+
       const sideList = side => (
         <div
           className={`${classes.list} `}
@@ -65,9 +81,9 @@ function Front(props) {
             Classic braids
           </Typography>
           <List>
-            {['Booking', 'Price List', 'Contact'].map((text, index) => (
+            {['Book An Appointment', 'Pricing', 'Contact Us'].map((text, index) => (
               <ListItem className="sideList" button key={text}>
-                <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
+                <ListItemIcon>{renderIcon(index)}</ListItemIcon>
                 <ListItemText primary={text} />
               </ListItem>
             ))}
